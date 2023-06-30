@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 export const MovieList = () => (
   <div className="user-page">
     <header className="page-header user-page__head">
@@ -27,12 +30,15 @@ export const MovieList = () => (
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
       <div className="catalog__films-list">
+
         <article className="small-film-card catalog__films-card">
-          <div className="small-film-card__image">
-            <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-          </div>
+          <Link to={AppRoute.Film}>
+            <div className="small-film-card__image">
+              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+            </div>
+          </Link>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+            <Link className="small-film-card__link" to={AppRoute.Film}>Fantastic Beasts: The Crimes of Grindelwald</Link>
           </h3>
         </article>
 
