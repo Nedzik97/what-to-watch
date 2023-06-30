@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App, { AppScreenProps } from './components/app/app';
+import App from './components/app/app';
 
 
-const filmInfo: AppScreenProps = {
+const filmInfo = {
   filmTitle: 'Титаник',
   genre: 'мелодрама',
   movieReleaseDate: 2002
@@ -15,6 +15,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App filmInfo={filmInfo}/>
+    <App filmTitle={filmInfo.filmTitle} genre={filmInfo.genre} movieReleaseDate={filmInfo.movieReleaseDate}/>
   </React.StrictMode>,
 );
