@@ -1,3 +1,6 @@
+import {Link} from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 export const AddReviews = (): JSX.Element =>
   (
     <section className="film-card film-card--full">
@@ -10,20 +13,20 @@ export const AddReviews = (): JSX.Element =>
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to="main.html" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link to={AppRoute.Film} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link className="breadcrumbs__link" to={AppRoute.AddReview} >Add review</Link>
               </li>
             </ul>
           </nav>
@@ -35,7 +38,7 @@ export const AddReviews = (): JSX.Element =>
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <a className="user-block__link" href="/" >Sign out</a>
             </li>
           </ul>
         </header>

@@ -8,17 +8,17 @@ import { MoviePlayer } from '../../pages/movie-player/movie-player';
 import { PrivateRoute } from '../private-route/private-route';
 import { NotFoundPage } from '../page-not-found/page-not-found';
 import { AppRoute, AuthorizationStatus} from '../../const';
+import { Movie } from '../../types/types';
 
-export type AppScreenProps = {
-  filmTitle: string;
-  genre: string;
-  movieReleaseDate: number;
-}
+type AppProps = {
+    movies: Movie[];
+  }
 
-const App = ({filmTitle, genre, movieReleaseDate}: AppScreenProps): JSX.Element => (
+
+const App = ({ movies }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
-      <Route index element={<MainPage filmTitle={filmTitle} genre={genre} movieReleaseDate={movieReleaseDate}/>} />
+      <Route index element={<MainPage movies={movies}/>} />
       <Route path={AppRoute.SignIn} element={<SignIn/>} />
       <Route path={AppRoute.MyList} element= {
         <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
@@ -38,6 +38,4 @@ const App = ({filmTitle, genre, movieReleaseDate}: AppScreenProps): JSX.Element 
     </Routes>
   </BrowserRouter>
 );
-
-
 export default App;

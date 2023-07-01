@@ -2,15 +2,15 @@ import {Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
-import { FilmsCard } from '../../components/films-card/films-card';
+import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
+import { MovieCard } from '../../components/movie-card/movie-card';
+import { Movie } from '../../types/types';
 
-type MainScreenProps = {
-  filmTitle: string;
-  genre: string;
-  movieReleaseDate: number;
+type MainPageProps = {
+  movies: Movie[];
 }
 
-export const MainPage = ({filmTitle, genre, movieReleaseDate}: MainScreenProps): JSX.Element => (
+export const MainPage = ({movies}: MainPageProps): JSX.Element => (
   <body>
     <div className="visually-hidden">
 
@@ -71,36 +71,8 @@ export const MainPage = ({filmTitle, genre, movieReleaseDate}: MainScreenProps):
         </ul>
       </header>
 
-      <div className="film-card__wrap">
-        <div className="film-card__info">
-          <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
-          </div>
+      <MovieCard/>
 
-          <div className="film-card__desc">
-            <h2 className="film-card__title">{filmTitle}</h2>
-            <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{movieReleaseDate}</span>
-            </p>
-
-            <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use href="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use href="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <div className="page-content">
@@ -141,26 +113,7 @@ export const MainPage = ({filmTitle, genre, movieReleaseDate}: MainScreenProps):
         </ul>
 
         <div className="catalog__films-list">
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
-          <FilmsCard/>
+          <MoviesSuggestList movies={movies}/>
         </div>
 
         <div className="catalog__more">
