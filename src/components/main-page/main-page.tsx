@@ -1,3 +1,5 @@
+import {Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { FilmsCard } from '../films-card/films-card';
 
 type MainScreenProps = {
@@ -6,7 +8,7 @@ type MainScreenProps = {
   movieReleaseDate: number;
 }
 
-export const Main = ({filmTitle, genre, movieReleaseDate}: MainScreenProps): JSX.Element => (
+export const MainPage = ({filmTitle, genre, movieReleaseDate}: MainScreenProps): JSX.Element => (
   <body>
     <div className="visually-hidden">
 
@@ -51,21 +53,23 @@ export const Main = ({filmTitle, genre, movieReleaseDate}: MainScreenProps): JSX
 
       <header className="page-header film-card__head">
         <div className="logo">
-          <a className="logo__link" href="#">
+          <Link className="logo__link" to='/'>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <Link to={AppRoute.MyList}>
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </Link>
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
           </li>
         </ul>
       </header>

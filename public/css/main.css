@@ -1409,3 +1409,39 @@ main {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
+
+.not_found_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.NotFoundTitle {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.NotFoundText {
+  font-size: 1.5rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.NotFoundLink {
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #007bff;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.NotFoundLink:hover {
+  background-color: #0056b3;
+}
