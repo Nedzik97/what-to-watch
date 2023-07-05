@@ -30,6 +30,9 @@
       "react-app/jest",
       "htmlacademy/react-typescript"
     ],
+    "rules": {
+      "object-curly-spacing": ["error", "always"]
+    },
     "parserOptions": {
       "project": [
         "tsconfig.json"

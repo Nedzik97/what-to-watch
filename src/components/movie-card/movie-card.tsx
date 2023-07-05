@@ -1,32 +1,28 @@
-export const MovieCard = (): JSX.Element => (
-  <div className="film-card__wrap">
-    <div className="film-card__info">
-      <div className="film-card__poster">
-        <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
-      </div>
+import {useState} from 'react';
+import { Movie } from '../../types/types';
+import { MoviePlayer } from '../../pages/movie-player/movie-player';
 
-      <div className="film-card__desc">
-        <h2 className="film-card__title">{}</h2>
-        <p className="film-card__meta">
-          <span className="film-card__genre">{}</span>
-          <span className="film-card__year">{}</span>
-        </p>
+type MovieCardProps = {
+  movie: Movie;
+}
 
-        <div className="film-card__buttons">
-          <button className="btn btn--play film-card__button" type="button">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use href="#play-s"></use>
-            </svg>
-            <span>Play</span>
-          </button>
-          <button className="btn btn--list film-card__button" type="button">
-            <svg viewBox="0 0 19 20" width="19" height="20">
-              <use href="#add"></use>
-            </svg>
-            <span>My list</span>
-          </button>
-        </div>
-      </div>
+export const MovieCard = ({movie}: MovieCardProps): JSX.Element => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div className='small-film-card__wrapper' onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered ? (<MoviePlayer videoSrc={movie.previewVideo} posterSrc={movie.poster} isHovered={isHovered} />) : (
+        <article className="small-film-card catalog__films-card" key={movie.id} >
+          <div className="small-film-card__image">
+            <img src={movie.poster} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">{movie.title}</a>
+          </h3>
+        </article>
+      )}
     </div>
-  </div>
-);
+  );
+};

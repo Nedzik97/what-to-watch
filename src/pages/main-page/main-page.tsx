@@ -3,7 +3,7 @@ import { AppRoute } from '../../const';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
-import { MovieCard } from '../../components/movie-card/movie-card';
+import { MovieInformation } from '../../components/movie-information/movie-information';
 import { Movie } from '../../types/types';
 
 type MainPageProps = {
@@ -71,7 +71,7 @@ export const MainPage = ({movies}: MainPageProps): JSX.Element => (
         </ul>
       </header>
 
-      <MovieCard/>
+      <MovieInformation/>
 
     </section>
 
