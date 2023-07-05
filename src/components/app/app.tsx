@@ -1,24 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { MainPage } from '../main-page/main-page';
-import { SignIn } from '../sign-in/sign-in';
-import { MovieList } from '../movie-list/movie-list';
-import { MoviePage } from '../movie-page/movie-page';
+import { MainPage } from '../../pages/main-page/main-page';
+import { SignIn } from '../../pages/sign-in/sign-in';
+import { MovieList } from '../../pages/movie-list/movie-list';
+import { MoviePage } from '../../pages/movie-page/movie-page';
 import { AddReviews } from '../add-reviews/add-reviews';
-import { MoviePlayer } from '../movie-player/movie-player';
+import { MoviePlayer } from '../../pages/movie-player/movie-player';
 import { PrivateRoute } from '../private-route/private-route';
 import { NotFoundPage } from '../page-not-found/page-not-found';
 import { AppRoute, AuthorizationStatus} from '../../const';
+import { Movie } from '../../types/types';
 
-export type AppScreenProps = {
-  filmTitle: string;
-  genre: string;
-  movieReleaseDate: number;
-}
+type AppProps = {
+    movies: Movie[];
+  }
 
-const App = ({filmTitle, genre, movieReleaseDate}: AppScreenProps): JSX.Element => (
+
+const App = ({ movies }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
-      <Route index element={<MainPage filmTitle={filmTitle} genre={genre} movieReleaseDate={movieReleaseDate}/>} />
+      <Route index element={<MainPage movies={movies}/>} />
       <Route path={AppRoute.SignIn} element={<SignIn/>} />
       <Route path={AppRoute.MyList} element= {
         <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
@@ -38,6 +38,4 @@ const App = ({filmTitle, genre, movieReleaseDate}: AppScreenProps): JSX.Element 
     </Routes>
   </BrowserRouter>
 );
-
-
 export default App;
