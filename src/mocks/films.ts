@@ -7,7 +7,7 @@ export const movies: Movie[] = [
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
     genre: 'fantastic',
     year: 2000,
-    previewVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    previewVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   {
     id: 2,
