@@ -1,4 +1,4 @@
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
@@ -10,7 +10,7 @@ type MainPageProps = {
   movies: Movie[];
 }
 
-export const MainPage = ({movies}: MainPageProps): JSX.Element => (
+export const MainPage = ({ movies }: MainPageProps): JSX.Element => (
   <body>
     <div className="visually-hidden">
 

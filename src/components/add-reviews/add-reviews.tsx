@@ -1,5 +1,5 @@
-import {Link} from 'react-router-dom';
-import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { Logo } from '../logo/logo';
 import { AppRoute } from '../../const';
 
@@ -29,7 +29,7 @@ export const AddReviews = (): JSX.Element => {
   const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setFormReview({rating: '', reviewText: ''});
+    setFormReview({ rating: '', reviewText: '' });
   };
 
   return (

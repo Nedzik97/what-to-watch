@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { Movie } from '../../types/types';
 import { MoviePlayer } from '../../pages/movie-player/movie-player';
 
@@ -6,7 +6,7 @@ type MovieCardProps = {
   movie: Movie;
 }
 
-export const MovieCard = ({movie}: MovieCardProps): JSX.Element => {
+export const MovieCard = ({ movie }: MovieCardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

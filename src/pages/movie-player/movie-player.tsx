@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { debounce } from '../../utils';
 import cx from 'classnames';
 
@@ -8,7 +8,7 @@ type MoviePlayerProps = {
   isHovered: boolean;
 }
 
-export const MoviePlayer = ({videoSrc, posterSrc, isHovered}: MoviePlayerProps): JSX.Element => {
+export const MoviePlayer = ({ videoSrc, posterSrc, isHovered }: MoviePlayerProps): JSX.Element => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);

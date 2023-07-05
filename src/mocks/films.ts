@@ -1,4 +1,4 @@
-import {Movie} from '../types/types';
+import { Movie } from '../types/types';
 
 export const movies: Movie[] = [
   {
@@ -13,7 +13,7 @@ export const movies: Movie[] = [
     id: 2,
     poster: 'img/bohemian-rhapsody.jpg',
     title: 'Bohemian Rhapsody',
-    genre: '',
+    genre: 'camedy',
     year: 2005,
     previewVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
   },

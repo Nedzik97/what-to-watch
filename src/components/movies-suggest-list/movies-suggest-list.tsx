@@ -5,7 +5,7 @@ type MoviesSuggestListProps = {
   movies: Movie[];
 }
 
-export const MoviesSuggestList = ({movies}: MoviesSuggestListProps): JSX.Element => (
+export const MoviesSuggestList = ({ movies }: MoviesSuggestListProps): JSX.Element => (
   <>
     {movies.map((movie) => (<MovieCard movie={movie} key={movie.id} /> )
     )}

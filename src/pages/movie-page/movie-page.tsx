@@ -1,18 +1,20 @@
 import cx from 'classnames';
+import { Movie } from '../../types/types';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { AppRoute } from '../../const';
+import { MoreLikeThisList } from '../../components/more-like-this-list/more-like-this-list';
 import { useState } from 'react';
 
 type MoviePageProps = {
   overview: JSX.Element;
   details: JSX.Element;
   reviews: JSX.Element;
+  movies: Movie[];
 }
 
-
-export const MoviePage = ({ overview, details, reviews }: MoviePageProps): JSX.Element => {
+export const MoviePage = ({ overview, details, reviews, movies }: MoviePageProps): JSX.Element => {
   const [activeMoviewInfo, setActiveMoviewInfo] = useState('Overview');
 
   const toggleTab = ( linkName: string) => {
@@ -118,14 +120,7 @@ export const MoviePage = ({ overview, details, reviews }: MoviePageProps): JSX.E
 
           <div className="catalog__films-list">
 
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
+            <MoreLikeThisList movies={movies} selectedGenre={'thriller'}/>
 
           </div>
         </section>
