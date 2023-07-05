@@ -1,25 +1,41 @@
+import {useState} from 'react';
 import { Movie } from '../../types/types';
+import { MoviePlayer } from '../../pages/movie-player/movie-player';
 
-type FilmsCardProps = {
+type MovieCardProps = {
   movies: Movie[];
 }
 
-const MovieSuggest = ({movies}: FilmsCardProps): JSX.Element => (
+type MovieSuggestProps = {
+  movie: Movie;
+}
+
+const MovieSuggest = ({movie}: MovieSuggestProps): JSX.Element => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div className='small-film-card__wrapper' onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered ? (<MoviePlayer videoSrc={movie.previewVideo} posterSrc={movie.poster} isHovered={isHovered} />) : (
+        <article className="small-film-card catalog__films-card" key={movie.id} >
+          <div className="small-film-card__image">
+            <img src={movie.poster} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">{movie.title}</a>
+          </h3>
+        </article>
+      )}
+    </div>
+  );
+};
+
+
+export const MoviesSuggestList = ({movies}: MovieCardProps): JSX.Element => (
   <>
-    {movies.map((movie) => (
-      <article className="small-film-card catalog__films-card" key={movie.id} >
-        <div className="small-film-card__image">
-          <img src={movie.poster} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-        </div>
-        <h3 className="small-film-card__title">
-          <a className="small-film-card__link" href="film-page.html">{movie.title}</a>
-        </h3>
-      </article>
-    )
+    {movies.map((movie) => (<MovieSuggest movie={movie} key={movie.id} /> )
     )}
   </>
 );
 
-export const MoviesSuggestList = ({movies}: FilmsCardProps): JSX.Element => (
-  <MovieSuggest movies={movies}/>
-);

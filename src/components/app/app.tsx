@@ -33,7 +33,10 @@ const App = ({ movies }: AppProps): JSX.Element => (
         </PrivateRoute>
       }
       />
-      <Route path={AppRoute.Player} element={<MoviePlayer/>} />
+      <Route path={AppRoute.Player} element={
+        <MoviePlayer videoSrc={''} posterSrc={''} isHovered={false} />
+      }
+      />
       <Route path='*' element={<NotFoundPage/>} />
     </Routes>
   </BrowserRouter>

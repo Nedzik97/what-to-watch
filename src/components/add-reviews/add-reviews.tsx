@@ -29,8 +29,6 @@ export const AddReviews = (): JSX.Element => {
   const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // eslint-disable-next-line no-console
-    console.log(formReview);
     setFormReview({rating: '', reviewText: ''});
   };
 
