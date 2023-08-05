@@ -12,3 +12,11 @@ export const debounce = <T extends unknown[]>(
     }, delay);
   };
 };
+
+export const genres = ['All genres', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];
+
+export const INITIAL_GENRE = 'All genres';
+
+export const MOVIES_PER_PAGE = 8;
+
+

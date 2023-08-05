@@ -20,7 +20,7 @@ type AppProps = {
 const App = ({ movies }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
-      <Route index element={<MainPage movies={movies}/>} />
+      <Route index element={<MainPage/>} />
       <Route path={AppRoute.SignIn} element={<SignIn/>} />
       <Route path={AppRoute.MyList} element= {
         <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
