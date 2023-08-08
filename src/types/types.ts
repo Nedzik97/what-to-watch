@@ -6,3 +6,7 @@ export type Movie = {
   year: number;
   previewVideo: string;
 };
+
+export type Genre = string;
+
+
