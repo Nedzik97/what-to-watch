@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
 import { SignIn } from '../../pages/auth-screen/auth-screen';
 import { MovieList } from '../../pages/movie-list/movie-list';
@@ -13,6 +13,8 @@ import { MoviePageDetails } from '../movie-page-details/movie-page-details';
 import { MoviewPageReviews } from '../movie-page-reviews/moview-page-reviews';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 import { useMainPageSelector } from '../../hooks';
+import { HistoryRouter } from '../history-router.tsx/history-route';
+import { browserHistory } from '../../browser-history';
 
 
 const App = (): JSX.Element => {
@@ -24,7 +26,7 @@ const App = (): JSX.Element => {
     );
   }
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route index element={<MainPage/>} />
         <Route path={AppRoute.SignIn} element={<SignIn/>} />
@@ -50,7 +52,7 @@ const App = (): JSX.Element => {
         />
         <Route path='*' element={<NotFoundPage/>} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 };
 

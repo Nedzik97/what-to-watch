@@ -2,11 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from './index';
 import { store } from './index';
 import { Films } from '../types/films';
-import { loadFilms, requireAuthorization } from './action';
+import { loadFilms, redirectToRoute, requireAuthorization } from './action';
 import { saveToken, dropToken } from '../services/token';
-import { APIRoute, AuthorizationStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
+
 
 export const fetchFilmsAction = createAsyncThunk(
   'data/fetchFilms',
@@ -27,10 +28,13 @@ export const checkAuthAction = createAsyncThunk(
 export const LoginAction = createAsyncThunk(
   'user/login',
   async ({ login: email, password }: AuthData) => {
+
     const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
     store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    store.dispatch(redirectToRoute(AppRoute.MyList));
   }
+
 );
 
 export const logoutAction = createAsyncThunk(
