@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
-import { SignIn } from '../../pages/sign-in/sign-in';
+import { SignIn } from '../../pages/auth-screen/auth-screen';
 import { MovieList } from '../../pages/movie-list/movie-list';
 import { MoviePage } from '../../pages/movie-page/movie-page';
 import { AddReviews } from '../add-reviews/add-reviews';
@@ -29,7 +29,7 @@ const App = (): JSX.Element => {
         <Route index element={<MainPage/>} />
         <Route path={AppRoute.SignIn} element={<SignIn/>} />
         <Route path={AppRoute.MyList} element= {
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Unknown}>
             <MovieList/>
           </PrivateRoute>
         }
