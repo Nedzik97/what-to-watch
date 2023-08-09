@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { reducer } from './store/reducer';
-import { movies } from './mocks/films';
+import { store } from './store/index';
+import { fetchFilmsAction, checkAuthAction } from './store/api-action';
 
-export const store = configureStore({ reducer });
+store.dispatch(fetchFilmsAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App movies={movies} />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

@@ -1,18 +1,18 @@
 import { MovieCard } from '../movie-card/movie-card';
-import { Movie } from '../../types/types';
+import { Film } from '../../types/films';
 
 type MoreLikeThisListProps = {
-  movies: Movie[];
+  films: Film[];
   selectedGenre: string;
 }
 
-export const MoreLikeThisList = ({ movies, selectedGenre }: MoreLikeThisListProps) => {
-  const filteredMovies = movies.filter((movie) => movie.genre === selectedGenre);
+export const MoreLikeThisList = ({ films, selectedGenre }: MoreLikeThisListProps) => {
+  const filteredMovies = films.filter((film) => film.genre === selectedGenre);
 
   const renderMovies = filteredMovies.slice(0, 4);
   return (
     <>
-      {renderMovies.map((movie) => (<MovieCard movie={movie} key={movie.id}/>))}
+      {renderMovies.map((film) => (<MovieCard film={film} key={film.id}/>))}
     </>
   );
 };

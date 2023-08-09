@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import { Movie } from '../../types/types';
+import { Film } from '../../types/films';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
@@ -11,10 +11,10 @@ type MoviePageProps = {
   overview: JSX.Element;
   details: JSX.Element;
   reviews: JSX.Element;
-  movies: Movie[];
+  films: Film[];
 }
 
-export const MoviePage = ({ overview, details, reviews, movies }: MoviePageProps): JSX.Element => {
+export const MoviePage = ({ overview, details, reviews, films }: MoviePageProps): JSX.Element => {
   const [activeMoviewInfo, setActiveMoviewInfo] = useState('Overview');
 
   const toggleTab = ( linkName: string) => {
@@ -120,7 +120,7 @@ export const MoviePage = ({ overview, details, reviews, movies }: MoviePageProps
 
           <div className="catalog__films-list">
 
-            <MoreLikeThisList movies={movies} selectedGenre={'thriller'}/>
+            <MoreLikeThisList films={films} selectedGenre={'thriller'}/>
 
           </div>
         </section>

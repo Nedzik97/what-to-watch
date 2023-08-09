@@ -13,7 +13,7 @@ export const debounce = <T extends unknown[]>(
   };
 };
 
-export const genres = ['All genres', 'Comedies', 'Crime', 'Documentary', 'Dramas', 'Horror', 'Kids & Family', 'Romance', 'Sci-Fi', 'Thrillers'];
+export const genres = ['All genres', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Action', 'Kids & Family', 'Romance', 'Adventure', 'Thrillers'];
 
 export const INITIAL_GENRE = 'All genres';
 

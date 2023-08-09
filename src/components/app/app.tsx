@@ -11,36 +11,48 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
 import { MoviePageDetails } from '../movie-page-details/movie-page-details';
 import { MoviewPageReviews } from '../movie-page-reviews/moview-page-reviews';
-import { Movie } from '../../types/types';
+import { LoadingScreen } from '../loading-screen/loading-screen';
+import { useMainPageSelector } from '../../hooks';
 
-type AppProps = {
-    movies: Movie[];
+
+const App = (): JSX.Element => {
+  const { isDataLoaded, films } = useMainPageSelector((state) => state);
+
+  if ( !isDataLoaded) {
+    return (
+      <LoadingScreen/>
+    );
   }
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<MainPage/>} />
+        <Route path={AppRoute.SignIn} element={<SignIn/>} />
+        <Route path={AppRoute.MyList} element= {
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <MovieList/>
+          </PrivateRoute>
+        }
+        />
+        <Route path={AppRoute.Film} element= {
+          <MoviePage overview={<MoviePageOverview/>} details={<MoviePageDetails/>} reviews={<MoviewPageReviews/>} films={films} />
+        }
+        />
+        <Route path={AppRoute.AddReview} element={
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <AddReviews/>
+          </PrivateRoute>
+        }
+        />
+        <Route path={AppRoute.Player} element={
+          <MoviePlayer videoSrc={''} posterSrc={''} isHovered={false} />
+        }
+        />
+        <Route path='*' element={<NotFoundPage/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-const App = ({ movies }: AppProps): JSX.Element => (
-  <BrowserRouter>
-    <Routes>
-      <Route index element={<MainPage/>} />
-      <Route path={AppRoute.SignIn} element={<SignIn/>} />
-      <Route path={AppRoute.MyList} element= {
-        <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-          <MovieList/>
-        </PrivateRoute>
-      }
-      />
-      <Route path={AppRoute.Film} element={<MoviePage overview={<MoviePageOverview/>} details={<MoviePageDetails/>} reviews={<MoviewPageReviews/>} movies={movies}/>} />
-      <Route path={AppRoute.AddReview} element={
-        <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-          <AddReviews/>
-        </PrivateRoute>
-      }
-      />
-      <Route path={AppRoute.Player} element={
-        <MoviePlayer videoSrc={''} posterSrc={''} isHovered={false} />
-      }
-      />
-      <Route path='*' element={<NotFoundPage/>} />
-    </Routes>
-  </BrowserRouter>
-);
+
 export default App;

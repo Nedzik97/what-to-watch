@@ -5,7 +5,7 @@ import { Footer } from '../../components/footer/footer';
 import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
 import { MovieInformation } from '../../components/movie-information/movie-information';
 import { ShowMoreButton } from '../../components/show-more-button/show-more-button';
-import { useMainPageDispatch } from '../../store';
+import { useMainPageDispatch } from '../../hooks';
 import { genres } from '../../utils';
 import { changeGenre } from '../../store/action';
 import { useMovieGenreSorting } from '../../hooks/useMovieGenreSorting';
