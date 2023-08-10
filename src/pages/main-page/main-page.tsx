@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
+import { UserBlock } from '../../components/user-block/user-block';
 import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
 import { MovieInformation } from '../../components/movie-information/movie-information';
 import { ShowMoreButton } from '../../components/show-more-button/show-more-button';
@@ -10,6 +9,7 @@ import { genres } from '../../utils';
 import { changeGenre } from '../../store/action';
 import { useMovieGenreSorting } from '../../hooks/useMovieGenreSorting';
 import cx from 'classnames';
+
 
 export const MainPage = (): JSX.Element => {
   const dispatch = useMainPageDispatch();
@@ -69,18 +69,7 @@ export const MainPage = (): JSX.Element => {
 
           <Logo/>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <Link to={AppRoute.MyList}>
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </Link>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link className="user-block__link" to={AppRoute.SignIn}>Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <MovieInformation/>

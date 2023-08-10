@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
 import { SignIn } from '../../pages/auth-screen/auth-screen';
-import { MovieList } from '../../pages/movie-list/movie-list';
+import { MyFilmsList } from '../../pages/my-films-list/my-films-list';
 import { MoviePage } from '../../pages/movie-page/movie-page';
 import { AddReviews } from '../add-reviews/add-reviews';
 import { MoviePlayer } from '../../pages/movie-player/movie-player';
@@ -18,7 +18,7 @@ import { browserHistory } from '../../browser-history';
 
 
 const App = (): JSX.Element => {
-  const { isDataLoaded, films } = useMainPageSelector((state) => state);
+  const { isDataLoaded, films, authorizationStatus } = useMainPageSelector((state) => state);
 
   if ( !isDataLoaded) {
     return (
@@ -31,8 +31,8 @@ const App = (): JSX.Element => {
         <Route index element={<MainPage/>} />
         <Route path={AppRoute.SignIn} element={<SignIn/>} />
         <Route path={AppRoute.MyList} element= {
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Unknown}>
-            <MovieList/>
+          <PrivateRoute authorizationStatus={authorizationStatus}>
+            <MyFilmsList/>
           </PrivateRoute>
         }
         />

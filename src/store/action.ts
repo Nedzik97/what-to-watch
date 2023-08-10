@@ -10,3 +10,6 @@ export const requireAuthorization = createAction<AuthorizationStatus>('user/requ
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
 
+export const getUserData = createAction<string>('user/getUserData');
+
+
