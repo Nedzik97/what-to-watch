@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
 import { SignIn } from '../../pages/auth-screen/auth-screen';
-import { MyFilmsList } from '../../pages/my-films-list/my-films-list';
+import { FilmsListToWatch } from '../../pages/films-list-to-watch/films-list-to-watch';
 import { MoviePage } from '../../pages/movie-page/movie-page';
 import { AddReviews } from '../add-reviews/add-reviews';
 import { MoviePlayer } from '../../pages/movie-player/movie-player';
@@ -25,6 +25,7 @@ const App = (): JSX.Element => {
       <LoadingScreen/>
     );
   }
+
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -32,7 +33,7 @@ const App = (): JSX.Element => {
         <Route path={AppRoute.SignIn} element={<SignIn/>} />
         <Route path={AppRoute.MyList} element= {
           <PrivateRoute authorizationStatus={authorizationStatus}>
-            <MyFilmsList/>
+            <FilmsListToWatch/>
           </PrivateRoute>
         }
         />

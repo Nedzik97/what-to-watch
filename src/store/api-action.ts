@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from './index';
 import { store } from './index';
-import { Films } from '../types/films';
-import { loadFilms, redirectToRoute, requireAuthorization, getUserData } from './action';
+import { Films, Film } from '../types/films';
+import { loadFilms, loadFilmsToWatch, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -16,6 +16,23 @@ export const fetchFilmsListAction = createAsyncThunk(
     store.dispatch(loadFilms(data));
   },
 );
+
+export const fetchListFilmsToWatch = createAsyncThunk(
+  'data/fetchListFilmToWatch',
+  async () => {
+    const { data } = await api.get<Films>(APIRoute.Favorite);
+    store.dispatch(loadFilmsToWatch(data));
+  },
+);
+
+export const fetchLoadFilmPreview = createAsyncThunk(
+  'data/fetchCurrentFilmInfo',
+  async (id: number) => {
+    const { data } = await api.get<Film>(`${APIRoute.Films}/${id}`);
+    store.dispatch(loadFilmPreview(data));
+  }
+);
+
 
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',

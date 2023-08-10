@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Film } from '../../types/films';
 import { MoviePlayer } from '../../pages/movie-player/movie-player';
+import { fetchLoadFilmPreview } from '../../store/api-action';
+import { useMainPageDispatch } from '../../hooks';
 
 type MovieCardProps = {
   film: Film;
@@ -8,9 +10,16 @@ type MovieCardProps = {
 
 export const MovieCard = ({ film }: MovieCardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
+  const dispatch = useMainPageDispatch();
+  const handleLoadFilmPreview = () => {
+    dispatch(fetchLoadFilmPreview(film.id));
+  };
 
   return (
-    <div className='small-film-card__wrapper' onMouseEnter={() => setIsHovered(true)}
+    <div
+      className='small-film-card__wrapper'
+      onClick={handleLoadFilmPreview}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered ? (<MoviePlayer videoSrc={film.previewVideoLink} posterSrc={film.posterImage} isHovered={isHovered} />) : (

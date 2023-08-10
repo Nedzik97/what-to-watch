@@ -1,10 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Genre, Films } from '../types/films';
+import { Genre, Films, Film } from '../types/films';
 import { AuthorizationStatus, AppRoute } from '../const';
 
 export const changeGenre = createAction<Genre>('changeGenre');
 
 export const loadFilms = createAction<Films>('data/loadFilms');
+export const loadFilmsToWatch = createAction<Films>('data/loadFilmsToWatch');
+export const loadFilmPreview = createAction<Film>('data/loadFilmPreview');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
