@@ -2,7 +2,7 @@ import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { UserBlock } from '../../components/user-block/user-block';
 import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
-import { MovieInformation } from '../../components/film-preview/film-preview';
+import { FilmPromo } from '../../components/film-promo/film-promo';
 import { ShowMoreButton } from '../../components/show-more-button/show-more-button';
 import { useMainPageDispatch, useMainPageSelector } from '../../hooks';
 import { genres } from '../../utils';
@@ -14,7 +14,7 @@ import cx from 'classnames';
 export const MainPage = (): JSX.Element => {
   const dispatch = useMainPageDispatch();
   const { selectedGenre, handleShowMore, sortedMovies, displayedMoviesCount, resetCounter } = useMovieGenreSorting();
-  const { filmPreview } = useMainPageSelector((state) => state);
+  const { filmPromo } = useMainPageSelector((state) => state);
   const displayedMovies = sortedMovies.slice(0, displayedMoviesCount);
 
   const handleGenreChange = (e: React.MouseEvent<HTMLElement>, genre: string) => {
@@ -60,7 +60,7 @@ export const MainPage = (): JSX.Element => {
       <section className="film-card">
 
         <div className="film-card__bg">
-          <img src={filmPreview?.backgroundImage} alt={filmPreview?.name} />
+          <img src={filmPromo?.backgroundImage} alt={filmPromo?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -72,7 +72,7 @@ export const MainPage = (): JSX.Element => {
           <UserBlock/>
         </header>
 
-        <MovieInformation/>
+        <FilmPromo/>
 
       </section>
 

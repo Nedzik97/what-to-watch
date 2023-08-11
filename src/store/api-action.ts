@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from './index';
 import { store } from './index';
 import { Films, Film } from '../types/films';
-import { loadFilms, loadFilmsToWatch, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview } from './action';
+import { loadFilms, loadFilmsToWatch, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview, loadFilmPromo, loadFilmsSimilar } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -25,11 +25,28 @@ export const fetchListFilmsToWatch = createAsyncThunk(
   },
 );
 
+export const fetchListFilmsSimilar = createAsyncThunk(
+  'data/fetchListFilmsSimilar',
+  async (id: number) => {
+    const { data } = await api.get<Films>(`${APIRoute.Films}/${id}/similar`);
+    store.dispatch(loadFilmsSimilar(data));
+  }
+);
+
 export const fetchLoadFilmPreview = createAsyncThunk(
   'data/fetchCurrentFilmInfo',
   async (id: number) => {
     const { data } = await api.get<Film>(`${APIRoute.Films}/${id}`);
     store.dispatch(loadFilmPreview(data));
+    store.dispatch(redirectToRoute(AppRoute.Film));
+  }
+);
+
+export const fetchLoadFilmPromo = createAsyncThunk(
+  'data/fetchFilmPromo',
+  async () => {
+    const { data } = await api.get<Film>(APIRoute.Promo);
+    store.dispatch(loadFilmPromo(data));
   }
 );
 

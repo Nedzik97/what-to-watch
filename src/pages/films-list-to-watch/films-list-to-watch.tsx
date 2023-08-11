@@ -1,7 +1,7 @@
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { UserBlock } from '../../components/user-block/user-block';
-import { MovieCard } from '../../components/movie-card/movie-card';
+import { FilmCard } from '../../components/film-card/film-card';
 import { useMainPageSelector } from '../../hooks';
 
 export const FilmsListToWatch = () => {
@@ -23,7 +23,7 @@ export const FilmsListToWatch = () => {
 
         <div className="catalog__films-list">
 
-          {listFilmsToWatch.map((film) => (<MovieCard film={film} key={film.id} />
+          {listFilmsToWatch.map((film) => (<FilmCard film={film} key={film.id} />
           ))}
 
         </div>

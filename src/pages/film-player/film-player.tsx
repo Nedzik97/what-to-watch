@@ -8,7 +8,7 @@ type MoviePlayerProps = {
   isHovered: boolean;
 }
 
-export const MoviePlayer = ({ videoSrc, posterSrc, isHovered }: MoviePlayerProps): JSX.Element => {
+export const FilmPlayer = ({ videoSrc, posterSrc, isHovered }: MoviePlayerProps): JSX.Element => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);

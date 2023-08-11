@@ -2,15 +2,12 @@ import { Routes, Route } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
 import { SignIn } from '../../pages/auth-screen/auth-screen';
 import { FilmsListToWatch } from '../../pages/films-list-to-watch/films-list-to-watch';
-import { MoviePage } from '../../pages/movie-page/movie-page';
+import { FilmInfo } from '../../pages/film-info/film-info';
 import { AddReviews } from '../add-reviews/add-reviews';
-import { MoviePlayer } from '../../pages/movie-player/movie-player';
+import { FilmPlayer } from '../../pages/film-player/film-player';
 import { PrivateRoute } from '../private-route/private-route';
 import { NotFoundPage } from '../page-not-found/page-not-found';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
-import { MoviePageDetails } from '../movie-page-details/movie-page-details';
-import { MoviewPageReviews } from '../movie-page-reviews/moview-page-reviews';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 import { useMainPageSelector } from '../../hooks';
 import { HistoryRouter } from '../history-router.tsx/history-route';
@@ -18,7 +15,7 @@ import { browserHistory } from '../../browser-history';
 
 
 const App = (): JSX.Element => {
-  const { isDataLoaded, films, authorizationStatus } = useMainPageSelector((state) => state);
+  const { isDataLoaded, authorizationStatus } = useMainPageSelector((state) => state);
 
   if ( !isDataLoaded) {
     return (
@@ -38,7 +35,7 @@ const App = (): JSX.Element => {
         }
         />
         <Route path={AppRoute.Film} element= {
-          <MoviePage overview={<MoviePageOverview/>} details={<MoviePageDetails/>} reviews={<MoviewPageReviews/>} films={films} />
+          <FilmInfo />
         }
         />
         <Route path={AppRoute.AddReview} element={
@@ -48,7 +45,7 @@ const App = (): JSX.Element => {
         }
         />
         <Route path={AppRoute.Player} element={
-          <MoviePlayer videoSrc={''} posterSrc={''} isHovered={false} />
+          <FilmPlayer videoSrc={''} posterSrc={''} isHovered={false} />
         }
         />
         <Route path='*' element={<NotFoundPage/>} />
@@ -56,6 +53,5 @@ const App = (): JSX.Element => {
     </HistoryRouter>
   );
 };
-
 
 export default App;

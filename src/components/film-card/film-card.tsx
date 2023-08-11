@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Film } from '../../types/films';
-import { MoviePlayer } from '../../pages/movie-player/movie-player';
-import { fetchLoadFilmPreview } from '../../store/api-action';
+import { FilmPlayer } from '../../pages/film-player/film-player';
+import { fetchLoadFilmPreview, fetchListFilmsSimilar } from '../../store/api-action';
 import { useMainPageDispatch } from '../../hooks';
 
 type MovieCardProps = {
   film: Film;
 }
 
-export const MovieCard = ({ film }: MovieCardProps): JSX.Element => {
+export const FilmCard = ({ film }: MovieCardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useMainPageDispatch();
   const handleLoadFilmPreview = () => {
     dispatch(fetchLoadFilmPreview(film.id));
+    dispatch(fetchListFilmsSimilar(film.id));
   };
 
   return (
@@ -22,7 +23,7 @@ export const MovieCard = ({ film }: MovieCardProps): JSX.Element => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {isHovered ? (<MoviePlayer videoSrc={film.previewVideoLink} posterSrc={film.posterImage} isHovered={isHovered} />) : (
+      {isHovered ? (<FilmPlayer videoSrc={film.previewVideoLink} posterSrc={film.posterImage} isHovered={isHovered} />) : (
         <article className="small-film-card catalog__films-card" key={film.id} >
           <div className="small-film-card__image">
             <img src={film.posterImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />

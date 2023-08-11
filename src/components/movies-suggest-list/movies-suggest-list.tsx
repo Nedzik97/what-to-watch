@@ -1,4 +1,4 @@
-import { MovieCard } from '../movie-card/movie-card';
+import { FilmCard } from '../film-card/film-card';
 import { Film } from '../../types/films';
 
  type Props = {
@@ -7,7 +7,7 @@ import { Film } from '../../types/films';
 
 export const MoviesSuggestList = ({ displayedMovies }: Props): JSX.Element => (
   <div className="catalog__films-list">
-    {displayedMovies.map((film) => (<MovieCard film={film} key={film.id} />
+    {displayedMovies.map((film) => (<FilmCard film={film} key={film.id} />
     ))}
   </div>
 );

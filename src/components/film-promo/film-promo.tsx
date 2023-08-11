@@ -1,21 +1,21 @@
 import { useMainPageSelector } from '../../hooks';
 
 
-export const MovieInformation = (): JSX.Element => {
-  const { filmPreview } = useMainPageSelector((state) => state);
+export const FilmPromo = (): JSX.Element => {
+  const { filmPromo } = useMainPageSelector((state) => state);
 
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
         <div className="film-card__poster">
-          <img src={filmPreview?.posterImage} alt={filmPreview?.name} width="218" height="327" />
+          <img src={filmPromo?.posterImage} alt={filmPromo?.name} width="218" height="327" />
         </div>
 
         <div className="film-card__desc">
-          <h2 className="film-card__title">{filmPreview?.name}</h2>
+          <h2 className="film-card__title">{filmPromo?.name}</h2>
           <p className="film-card__meta">
-            <span className="film-card__genre">{filmPreview?.genre}</span>
-            <span className="film-card__year">{filmPreview?.released}</span>
+            <span className="film-card__genre">{filmPromo?.genre}</span>
+            <span className="film-card__year">{filmPromo?.released}</span>
           </p>
 
           <div className="film-card__buttons">

@@ -1,4 +1,4 @@
-export const MoviewPageReviews = (): JSX.Element => (
+export const ReviewFilm = (): JSX.Element => (
   <div className="film-card__reviews film-card__row">
     <div className="film-card__reviews-col">
       <div className="review">
