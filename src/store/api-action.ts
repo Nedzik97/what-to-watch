@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from './index';
 import { store } from './index';
-import { Films, Film } from '../types/films';
+import { Films, Film, FilmReview } from '../types/films';
 import { loadFilms, loadFilmsToWatch, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview, loadFilmPromo, loadFilmsSimilar, loadCommentsList } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
@@ -62,12 +62,7 @@ export const fetchLoadCommentsList = createAsyncThunk(
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
   async () => {
-    try {
-      await api.get(APIRoute.Login);
-      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    } catch {
-      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    }
+    await api.get(APIRoute.Login);
   }
 );
 
@@ -79,6 +74,14 @@ export const LoginAction = createAsyncThunk(
     store.dispatch(getUserData(avatarUrl));
     store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
     store.dispatch(redirectToRoute(AppRoute.MyList));
+  }
+);
+
+export const addReview = createAsyncThunk(
+  'data/addReview',
+  async ( { rating, comment, id }: FilmReview ) => {
+    await api.post<FilmReview>(`${APIRoute.Comments}/${id}`, { rating, comment });
+    store.dispatch(redirectToRoute(`${AppRoute.Films}/${id}`));
   }
 );
 

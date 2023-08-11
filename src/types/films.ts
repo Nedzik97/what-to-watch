@@ -18,6 +18,12 @@ export type Film = {
   isFavorite: boolean;
 };
 
+export type FilmReview = {
+  id: number;
+  comment: string;
+  rating: number;
+}
+
 export type Films = Film[];
 
 export type Genre = string;

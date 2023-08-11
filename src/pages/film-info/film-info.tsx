@@ -4,11 +4,14 @@ import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { AppRoute } from '../../const';
 import { FilmsSimilarList } from '../../components/films-similar-list/films-similar-list';
-import { DetailsFilm } from '../../components/details-film/details-film';
-import { OverviewFilm } from '../../components/overview-film/overview-film';
-import { ReviewFilm } from '../../components/review-film/review-film';
+import { DetailsFilm } from '../../components/extended-info-film/details-film/details-film';
+import { OverviewFilm } from '../../components/extended-info-film/overview-film/overview-film';
+import { ReviewFilm } from '../../components/extended-info-film/review-film/review-film';
+import { UserBlock } from '../../components/user-block/user-block';
 import { useState } from 'react';
 import { useMainPageSelector } from '../../hooks';
+import { redirectToRoute } from '../../store/action';
+import { store } from '../../store';
 
 
 export const FilmInfo = (): JSX.Element => {
@@ -17,6 +20,14 @@ export const FilmInfo = (): JSX.Element => {
 
   const toggleTab = ( linkName: string) => {
     setActiveMoviewInfo(linkName);
+  };
+
+  const transitionToAddReview = (evt: React.MouseEvent<HTMLAnchorElement>, id: number | undefined) => {
+    evt.preventDefault();
+    if (id !== undefined) {
+      store.dispatch(redirectToRoute(`/films/${id}/review`));
+    }
+
   };
 
   return (
@@ -33,16 +44,7 @@ export const FilmInfo = (): JSX.Element => {
 
             <Logo/>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link" href='/'>Sign out</a>
-              </li>
-            </ul>
+            <UserBlock/>
           </header>
 
           <div className="film-card__wrap">
@@ -67,7 +69,11 @@ export const FilmInfo = (): JSX.Element => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={AppRoute.AddReview} className="btn film-card__button">Add review</Link>
+                <a href='*'
+                  onClick={(evt) => transitionToAddReview(evt, filmPreview?.id)}
+                  className="btn film-card__button"
+                >Add review
+                </a>
               </div>
             </div>
           </div>

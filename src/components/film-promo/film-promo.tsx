@@ -1,6 +1,5 @@
 import { useMainPageSelector } from '../../hooks';
 
-
 export const FilmPromo = (): JSX.Element => {
   const { filmPromo } = useMainPageSelector((state) => state);
 

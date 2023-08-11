@@ -12,15 +12,17 @@ export const UserBlock = (): JSX.Element => {
     evt.preventDefault();
     dispatch(logoutAction());
   };
-  // eslint-disable-next-line no-console
-  console.log(authorizationStatus);
+
   return (
     <ul className="user-block">
+      {authorizationStatus === AuthorizationStatus.Auth &&
       <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src={authorizationStatus === AuthorizationStatus.Auth && userData !== '' ? userData : 'img/avatar.jpg'} alt="User avatar" width="63" height="63" />
-        </div>
-      </li>
+        <Link to={AppRoute.MyList}>
+          <div className="user-block__avatar">
+            <img src={authorizationStatus === AuthorizationStatus.Auth && userData !== '' ? userData : 'img/avatar.jpg'} alt="User avatar" width="63" height="63" />
+          </div>
+        </Link>
+      </li>}
       <li className="user-block__item">
         {authorizationStatus === AuthorizationStatus.Auth ?
           <Link

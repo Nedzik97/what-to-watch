@@ -1,5 +1,5 @@
-import { useMainPageSelector } from '../../hooks';
-import { getFormatDate } from '../../const';
+import { useMainPageSelector } from '../../../hooks';
+import { getFormatDate } from '../../../const';
 
 export const ReviewFilm = (): JSX.Element => {
   const { commentsList } = useMainPageSelector((state) => state);
