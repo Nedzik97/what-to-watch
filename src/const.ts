@@ -2,9 +2,10 @@ export enum AppRoute {
   Root = '/',
   SignIn = '/login',
   MyList = '/mylist',
-  Film = '/films',
+  Films = '/films',
   AddReview = '/films/:id/review',
   Player = '/player/:id',
+  Film = '/films/:id'
 }
 
 export enum AuthorizationStatus {
@@ -22,3 +23,11 @@ export enum APIRoute {
   Promo = '/promo'
 }
 
+export const getFormatDate = (dateTime: string) => {
+  const date = new Date(dateTime);
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const time = date.toLocaleTimeString();
+
+  return `${year}-${day < 10 ? 0 + day : day} ${time}`;
+};

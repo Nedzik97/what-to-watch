@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Film } from '../../types/films';
 import { FilmPlayer } from '../../pages/film-player/film-player';
-import { fetchLoadFilmPreview, fetchListFilmsSimilar } from '../../store/api-action';
+import { fetchLoadFilmPreview, fetchListFilmsSimilar, fetchLoadCommentsList } from '../../store/api-action';
 import { useMainPageDispatch } from '../../hooks';
 
 type MovieCardProps = {
@@ -14,6 +14,7 @@ export const FilmCard = ({ film }: MovieCardProps): JSX.Element => {
   const handleLoadFilmPreview = () => {
     dispatch(fetchLoadFilmPreview(film.id));
     dispatch(fetchListFilmsSimilar(film.id));
+    dispatch(fetchLoadCommentsList(film.id));
   };
 
   return (

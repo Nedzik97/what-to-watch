@@ -5,7 +5,7 @@ import { Film } from '../../types/films';
   displayedMovies: Film[];
 }
 
-export const MoviesSuggestList = ({ displayedMovies }: Props): JSX.Element => (
+export const FilmSuggestList = ({ displayedMovies }: Props): JSX.Element => (
   <div className="catalog__films-list">
     {displayedMovies.map((film) => (<FilmCard film={film} key={film.id} />
     ))}

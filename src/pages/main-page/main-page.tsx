@@ -1,7 +1,7 @@
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { UserBlock } from '../../components/user-block/user-block';
-import { MoviesSuggestList } from '../../components/movies-suggest-list/movies-suggest-list';
+import { FilmSuggestList } from '../../components/film-suggest-list/film-suggest-list';
 import { FilmPromo } from '../../components/film-promo/film-promo';
 import { ShowMoreButton } from '../../components/show-more-button/show-more-button';
 import { useMainPageDispatch, useMainPageSelector } from '../../hooks';
@@ -100,7 +100,7 @@ export const MainPage = (): JSX.Element => {
           </ul>
 
 
-          <MoviesSuggestList displayedMovies={displayedMovies}/>
+          <FilmSuggestList displayedMovies={displayedMovies}/>
 
           {displayedMoviesCount >= sortedMovies.length ? null : <ShowMoreButton onClick={handleShowMore}/>}
 
