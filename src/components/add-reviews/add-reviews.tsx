@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '../logo/logo';
-import { AppRoute } from '../../const';
 import { UserBlock } from '../user-block/user-block';
-import { ratingLevels } from '../../utils';
+import { ratingLevels } from '../../utils/utils';
 import { useMainPageSelector, useMainPageDispatch } from '../../hooks';
 import { useState } from 'react';
-import { validateFormReview } from '../../utils';
+import { validateFormReview } from '../../utils/utils';
 import { addReview } from '../../store/api-action';
 import { FilmReview } from '../../types/films';
 
 export const AddReviews = (): JSX.Element => {
-  const { filmPreview } = useMainPageSelector((state) => state);
+  const { FILM } = useMainPageSelector((state) => state);
   const dispatch = useMainPageDispatch();
+  const navigate = useNavigate();
 
   const [formField, setFormField] = useState({
     rating: '',
@@ -32,6 +32,19 @@ export const AddReviews = (): JSX.Element => {
     }));
   };
 
+  const transitionToFilmInfo = (evt: React.MouseEvent<HTMLAnchorElement>, id: number | undefined) => {
+    evt.preventDefault();
+    if (id !== undefined) {
+      navigate(`/films/${id}`);
+    }
+  };
+
+  const transitionToAddReview = (evt: React.MouseEvent<HTMLAnchorElement>, id: number | undefined) => {
+    evt.preventDefault();
+    if (id !== undefined) {
+      navigate(`/films/${id}/review`);
+    }
+  };
 
   const validateForm = validateFormReview(formField.rating, formField.textReview);
 
@@ -42,7 +55,7 @@ export const AddReviews = (): JSX.Element => {
   const handleAddReview = (evt: React.FormEvent) => {
     evt.preventDefault();
     if (validateForm) {
-      if (filmPreview) {
+      if (FILM) {
         onSubmit({
           id: filmPreview.id,
           rating: Number(formField.rating),
@@ -67,10 +80,10 @@ export const AddReviews = (): JSX.Element => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.Film} className="breadcrumbs__link">{filmPreview?.name}</Link>
+                <a href='*' onClick={(evt) => transitionToFilmInfo(evt, filmPreview?.id)} className="breadcrumbs__link">{filmPreview?.name}</a>
               </li>
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={AppRoute.AddReview} >Add review</Link>
+                <a className="breadcrumbs__link" href='*' onClick={(evt) => transitionToAddReview(evt, filmPreview?.id)} >Add review</a>
               </li>
             </ul>
           </nav>

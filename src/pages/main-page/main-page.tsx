@@ -5,7 +5,7 @@ import { FilmSuggestList } from '../../components/film-suggest-list/film-suggest
 import { FilmPromo } from '../../components/film-promo/film-promo';
 import { ShowMoreButton } from '../../components/show-more-button/show-more-button';
 import { useMainPageDispatch, useMainPageSelector } from '../../hooks';
-import { genres } from '../../utils';
+import { genres } from '../../utils/utils';
 import { changeGenre } from '../../store/action';
 import { useMovieGenreSorting } from '../../hooks/useMovieGenreSorting';
 import cx from 'classnames';

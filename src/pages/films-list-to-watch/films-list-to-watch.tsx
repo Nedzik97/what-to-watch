@@ -5,7 +5,7 @@ import { FilmCard } from '../../components/film-card/film-card';
 import { useMainPageSelector } from '../../hooks';
 
 export const FilmsListToWatch = () => {
-  const { listFilmsToWatch } = useMainPageSelector((state) => state);
+  const { films } = useMainPageSelector((state) => state);
 
   return (
     <div className="user-page">
@@ -23,7 +23,7 @@ export const FilmsListToWatch = () => {
 
         <div className="catalog__films-list">
 
-          {listFilmsToWatch.map((film) => (<FilmCard film={film} key={film.id} />
+          {films.map((film) => (<FilmCard film={film} key={film.id} />
           ))}
 
         </div>

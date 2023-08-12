@@ -1,7 +1,7 @@
 import { useRef, FormEvent } from 'react';
 import { useMainPageDispatch } from '../../hooks';
 import { LoginAction } from '../../store/api-action';
-import { AuthData } from '../../types/auth-data';
+import { AuthData } from '../../types/user-auth-data';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 
@@ -20,7 +20,7 @@ export const SignIn = (): JSX.Element => {
 
     if (loginRef.current !== null && passwordRef.current !== null) {
       onSubmit({
-        login: loginRef.current.value,
+        email: loginRef.current.value,
         password: passwordRef.current.value
       });
     }

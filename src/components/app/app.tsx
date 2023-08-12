@@ -45,7 +45,7 @@ const App = (): JSX.Element => {
         }
         />
         <Route path={AppRoute.Player} element={
-          <FilmPlayer videoSrc={''} posterSrc={''} isHovered={false} />
+          <FilmPlayer isHovered={false} videoSrc={''} posterSrc={''} />
         }
         />
         <Route path='*' element={<NotFoundPage/>} />

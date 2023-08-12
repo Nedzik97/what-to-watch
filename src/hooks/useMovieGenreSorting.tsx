@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { INITIAL_GENRE, MOVIES_PER_PAGE } from '../utils';
+import { DEFAULT_GENRE, FILMS_AMOUNT } from '../utils/constants';
 import { useMainPageSelector } from './index';
 
 export const useMovieGenreSorting = () => {
-  const [displayedMoviesCount, setDisplayedMoviesCount] = useState(MOVIES_PER_PAGE);
+  const [displayedMoviesCount, setDisplayedMoviesCount] = useState(FILMS_AMOUNT);
   const { films, selectedGenre } = useMainPageSelector((state) => state);
 
-  const sortedMovies = selectedGenre === INITIAL_GENRE ? films : films.filter((movie) => movie.genre === selectedGenre);
+  const sortedMovies = selectedGenre === DEFAULT_GENRE ? films : films.filter((movie) => movie.genre === selectedGenre);
 
   const handleShowMore = () => {
-    setDisplayedMoviesCount((prevCount) => prevCount + MOVIES_PER_PAGE);
+    setDisplayedMoviesCount((prevCount) => prevCount + FILMS_AMOUNT);
   };
 
   const resetCounter = () => {
-    setDisplayedMoviesCount(MOVIES_PER_PAGE);
+    setDisplayedMoviesCount(FILMS_AMOUNT);
   };
 
   return { selectedGenre, handleShowMore, sortedMovies, displayedMoviesCount, resetCounter };

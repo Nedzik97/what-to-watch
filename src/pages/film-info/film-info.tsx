@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import { Link } from 'react-router-dom';
 import { Logo } from '../../components/logo/logo';
 import { Footer } from '../../components/footer/footer';
 import { AppRoute } from '../../const';
@@ -27,7 +26,13 @@ export const FilmInfo = (): JSX.Element => {
     if (id !== undefined) {
       store.dispatch(redirectToRoute(`/films/${id}/review`));
     }
+  };
 
+  const transitionFilmPlayer = (evt: React.MouseEvent<HTMLAnchorElement>, id: number | undefined) => {
+    evt.preventDefault();
+    if (id !== undefined) {
+      store.dispatch(redirectToRoute(`${AppRoute.Players}/${id}`));
+    }
   };
 
   return (
@@ -56,12 +61,12 @@ export const FilmInfo = (): JSX.Element => {
               </p>
 
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" to={AppRoute.Player}>
+                <a className="btn btn--play film-card__button" href='*'onClick={(evt) => transitionFilmPlayer(evt, filmPreview?.id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </Link>
+                </a>
 
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">

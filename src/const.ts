@@ -4,6 +4,7 @@ export enum AppRoute {
   MyList = '/mylist',
   Films = '/films',
   AddReview = '/films/:id/review',
+  Players = '/player',
   Player = '/player/:id',
   Film = '/films/:id'
 }
@@ -51,3 +52,17 @@ export function getRatingResult(rating: number | undefined) {
       return 'Invalid rating';
   }
 }
+
+export const ApiError = {
+  Films: 'Failed to load films',
+  PromoFilm: 'Failed to load promo film',
+  Film: 'Failed to load film data',
+  Favorite: 'Failed to load favorite films',
+  PostFavorite: 'Failed to change favorite status',
+  Reviews: 'Failed to load reviews',
+  PostReview: 'Failed to post review',
+  SimilarFilms: 'Failed to load similar films ',
+  Login: 'Failed to login',
+  Logout: 'Failed to logout',
+  Unauthorized: 'You\'re not logged in. Some features are not available'
+} as const;

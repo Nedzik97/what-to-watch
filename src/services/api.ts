@@ -1,22 +1,13 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
+import { API_URL, REQUEST_TIMEOUT } from '../utils/constants';
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
 import { toast } from 'react-toastify';
 
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true
-};
-
-const shoudDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
-
-const BACKEND_URL = 'https://9.react.pages.academy/wtw';
-const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
-    baseURL: BACKEND_URL,
+    baseURL: API_URL,
     timeout: REQUEST_TIMEOUT,
   });
 
@@ -34,10 +25,14 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError<{error: string}>) => {
-      if (error.response && shoudDisplayError(error.response)) {
-        toast.warn(error.response.data.error);
+    (error: AxiosError<{ error:string }>)=>{
+      if (error.response?.status === StatusCodes.UNAUTHORIZED) {
+        toast.warn('You\'re not logged in. Some features are not available', { toastId: error.code });
       }
+      if (error.response?.status === StatusCodes.NOT_FOUND) {
+        toast.error(error.response.data.error, { toastId:error.code });
+      }
+      throw error;
     }
   );
 

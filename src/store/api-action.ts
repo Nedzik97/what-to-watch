@@ -2,26 +2,18 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from './index';
 import { store } from './index';
 import { Films, Film, FilmReview } from '../types/films';
-import { loadFilms, loadFilmsToWatch, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview, loadFilmPromo, loadFilmsSimilar, loadCommentsList } from './action';
+import { loadFilms, redirectToRoute, requireAuthorization, getUserData, loadFilmPreview, loadFilmPromo, loadFilmsSimilar, loadCommentsList } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
-import { AuthData } from '../types/auth-data';
-import { UserData } from '../types/user-data';
-import { Comments } from '../types/comments';
+import { AuthData } from '../types/user-auth-data';
+import { UserData } from '../types/user-auth-data';
+import { Reviews } from '../types/review';
 
 export const fetchFilmsListAction = createAsyncThunk(
   'data/fetchFilmsList',
   async () => {
     const { data } = await api.get<Films>(APIRoute.Films);
     store.dispatch(loadFilms(data));
-  },
-);
-
-export const fetchListFilmsToWatch = createAsyncThunk(
-  'data/fetchListFilmToWatch',
-  async () => {
-    const { data } = await api.get<Films>(APIRoute.Favorite);
-    store.dispatch(loadFilmsToWatch(data));
   },
 );
 
@@ -53,7 +45,7 @@ export const fetchLoadFilmPromo = createAsyncThunk(
 export const fetchLoadCommentsList = createAsyncThunk(
   'data/fetchCommentList',
   async (id: number) => {
-    const { data } = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
+    const { data } = await api.get<Reviews>(`${APIRoute.Comments}/${id}`);
     store.dispatch(loadCommentsList(data));
   }
 );
@@ -68,7 +60,7 @@ export const checkAuthAction = createAsyncThunk(
 
 export const LoginAction = createAsyncThunk(
   'user/login',
-  async ({ login: email, password }: AuthData) => {
+  async ({ email, password }: AuthData) => {
     const { data: { token, avatarUrl } } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(token);
     store.dispatch(getUserData(avatarUrl));
