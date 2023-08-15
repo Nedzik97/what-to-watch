@@ -4,7 +4,7 @@ import { checkAuth, login, logout } from './api-actions';
 import { UserState } from '../../types/state';
 
 const initialState:UserState = {
-  authStatus:AuthStatus.Unknown,
+  authStatus: AuthStatus.Unknown,
   userData: null
 };
 

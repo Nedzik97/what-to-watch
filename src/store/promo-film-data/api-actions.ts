@@ -5,7 +5,7 @@ import { ApiError, ApiRoute, ReducerName } from '../../utils/constants';
 import { Film } from '../../types/films.js';
 import { toast } from 'react-toastify';
 
-export const fetchPromoFilm = createAsyncThunk<Film|void, undefined, {
+export const fetchPromoFilm = createAsyncThunk<Film | void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

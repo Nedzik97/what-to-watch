@@ -4,15 +4,6 @@ import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
 
-export const genres = ['All genres', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Action', 'Kids & Family', 'Romance', 'Adventure', 'Thrillers'];
-export const ratingLevels = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
-
-
-export const validateFormReview = (ratingReview: string | null, textReview: string | null) =>
-  ratingReview !== null && textReview !== null
-    ? ratingReview && textReview.length >= 50 && textReview.length <= 400
-    : false;
-
 const formatReviewDate = (date: string) => dayjs(date).format(DATE_FORMAT);
 
 const formatReviewRaiting = (rating: number) => rating.toFixed(1);

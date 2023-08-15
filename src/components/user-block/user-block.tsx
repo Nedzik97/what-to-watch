@@ -1,44 +1,37 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { useMainPageSelector } from '../../hooks';
-import { useMainPageDispatch } from '../../hooks';
-import { logoutAction } from '../../store/api-action';
+import { AppRoute } from '../../utils/constants';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logout } from '../../store/user-data/api-actions';
+import { getIsAuthorized, getUserData } from '../../store/user-data/selectors';
 
-export const UserBlock = (): JSX.Element => {
-  const { authorizationStatus, userData } = useMainPageSelector((state) => state);
-  const dispatch = useMainPageDispatch();
+export const UserBlock = ():JSX.Element => {
+  const dispatch = useAppDispatch();
+  const isAuthorized = useAppSelector(getIsAuthorized);
+  const userData = useAppSelector(getUserData);
 
-  const handleLogout = (evt: React.MouseEvent<HTMLAnchorElement>) => {
-    evt.preventDefault();
-    dispatch(logoutAction());
+  const handleLogoutClick = ()=>{
+    dispatch(logout());
   };
 
-  return (
+  return (isAuthorized && userData ? (
     <ul className="user-block">
-      {authorizationStatus === AuthorizationStatus.Auth &&
       <li className="user-block__item">
         <Link to={AppRoute.MyList}>
           <div className="user-block__avatar">
-            <img src={authorizationStatus === AuthorizationStatus.Auth && userData !== '' ? userData : 'img/avatar.jpg'} alt="User avatar" width="63" height="63" />
+            <img src={userData.avatarUrl} alt={userData.name} width="63" height="63" />
           </div>
         </Link>
-      </li>}
+      </li>
       <li className="user-block__item">
-        {authorizationStatus === AuthorizationStatus.Auth ?
-          <Link
-            onClick={handleLogout}
-            className="user-block__link"
-            to={AppRoute.Root}
-          >
-          Sign out
-          </Link>
-          :
-          <Link
-            className="user-block__link"
-            to={AppRoute.SignIn}
-          > Sign in
-          </Link>}
+        <Link to={AppRoute.Main} className="user-block__link" onClick={handleLogoutClick}>Sign out</Link>
       </li>
     </ul>
+  ) : (
+    <ul className="user-block">
+      <li className="user-block__item">
+        <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
+      </li>
+    </ul>
+  )
   );
 };
