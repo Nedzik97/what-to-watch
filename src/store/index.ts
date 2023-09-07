@@ -1,6 +1,16 @@
-import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import { State, MainPageDispatch } from './state';
+import { configureStore } from '@reduxjs/toolkit';
+import { rootReducer } from './root-reducer';
+import { createAPI } from '../services/api';
+import { redirect } from './middleware';
 
-export const useMainPageDispatch = () => useDispatch<MainPageDispatch>();
+export const api = createAPI();
 
-export const useMainPageSelector: TypedUseSelectorHook<State> = useSelector;
+export const store = configureStore({
+  reducer:rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: {
+      extraArgument: api
+    }
+  }).concat(redirect),
+});
+

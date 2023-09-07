@@ -1,4 +1,3 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Genre } from '../types/types';
 
-export const changeGenre = createAction<Genre>('changeGenre');
+export const redirectToRoute = createAction<string>('app/redirectToRoute');
