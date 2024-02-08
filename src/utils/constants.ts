@@ -16,7 +16,7 @@ export const DATE_FORMAT = 'MMMM D, YYYY';
 
 export const PLAYING_DELAY = 1000;
 
-export const API_URL = 'https://9.react.pages.academy/wtw';
+export const API_URL = 'https://9.react.htmlacademy.pro/wtw';
 
 export const REQUEST_TIMEOUT = 5000;
 
