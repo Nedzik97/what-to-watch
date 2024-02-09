@@ -12,11 +12,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HistoryRouter history={browserHistory}>
+      <HistoryRouter history={browserHistory} basename='/what-to-watch'>
         <ToastContainer/>
         <App />
       </HistoryRouter>

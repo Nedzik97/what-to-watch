@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state.js';
 import { AuthData, UserData } from '../../types/user-auth-data.js';
-import { ApiError, ApiRoute, AppRoute, ReducerName } from '../../utils/constants';
+import { ApiError, ApiRoute, ReducerName } from '../../utils/constants';
 import { saveToken, dropToken } from '../../services/token';
 import { toast } from 'react-toastify';
 import { redirectToRoute } from '../action';
@@ -31,7 +31,7 @@ export const login = createAsyncThunk<UserData|void, AuthData, {
       try{
         const { data } = await api.post<UserData>(ApiRoute.Login, authData);
         saveToken(data.token);
-        dispatch(redirectToRoute(AppRoute.Main));
+        dispatch(redirectToRoute('/what-to-watch'));
         return data;}
       catch{
         toast.error(ApiError.Login, { toastId:'login' });

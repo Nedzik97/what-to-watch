@@ -32,7 +32,7 @@ export const App = (): JSX.Element => {
   return (
     <HelmetProvider>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage/>}/>
+        <Route path={AppRoute.Main} element={<MainPage/>} index/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute isAuthorized={isAuthorized} >
             <MyListPage />
