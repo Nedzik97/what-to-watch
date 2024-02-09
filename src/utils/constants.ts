@@ -48,13 +48,13 @@ export const ValidationPattern = {
 } as const;
 
 export const AppRoute = {
-  Main: '/',
+  Main: '*',
   SignIn: '/login',
   MyList: '/mylist',
   Film: '/films',
   Review: 'review',
   Player: '/player',
-  Error: '*'
+  Error: '/'
 } as const;
 
 export const AuthStatus = {
