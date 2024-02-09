@@ -48,7 +48,7 @@ export const ValidationPattern = {
 } as const;
 
 export const AppRoute = {
-  Main: '*',
+  Main: '/what-to-watch',
   SignIn: '/login',
   MyList: '/mylist',
   Film: '/films',
